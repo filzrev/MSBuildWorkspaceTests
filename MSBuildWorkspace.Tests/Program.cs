@@ -34,7 +34,7 @@ internal class Program
         var projectFiles = new[] {
             @"external/MonoGame/MonoGame.Framework.Content.Pipeline/MonoGame.Framework.Content.Pipeline.csproj",
             @"external/MonoGame/MonoGame.Framework/MonoGame.Framework.DesktopGL.csproj",
-        }.Select(Path.GetFullPath);
+        }.Select(Path.GetFullPath).Reverse();
 
         List<Compilation> projectCompilations = new List<Compilation>();
 
