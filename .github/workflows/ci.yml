@@ -1,0 +1,29 @@
+name: DocFX Ubuntu Sample
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - 'main'
+    pull_request:
+        branches:
+            - 'main'
+
+jobs:
+    build:
+        runs-on: ${{ matrix.os }}
+        strategy:
+          fail-fast: false
+          matrix:
+            os: [windows-latest, macos-latest, ubuntu-latest]
+        steps:
+            - name: Clone Repository
+              uses: actions/checkout@v4
+              with:
+                submodules: recursive
+            - name: Setup .NET SDK
+              uses: actions/setup-dotnet@v4
+              with:
+                dotnet-version: '8.x'
+            - run: dotnet run --project MSBuildWorkspace.Tests -c Release
+
+
